@@ -34,7 +34,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:recyclerview-v7:24.0.0'
-    compile 'com.yqritc:recyclerview-flexibledivider:1.2.9'
 }
 
 // 项目引用的版本号，比如compile 'com.yanzhenjie:andserver:1.0.1'中的1.0.1就是这里配置的。

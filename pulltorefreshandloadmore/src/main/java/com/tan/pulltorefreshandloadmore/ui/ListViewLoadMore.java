@@ -73,6 +73,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
     private boolean mHasLoadMoreViewShowState;
 
     private View parentView;
+    private boolean isLastData;//数据是否超过屏幕 超过显示更多数据,不超过则不显示
     public ListViewLoadMore(Context context) {
         super(context);
         init(context, null);
@@ -118,6 +119,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
         }
         mLoadMoreView = new DefaultLoadMoreView(context);
         mLoadMoreView.getFooterView().setOnClickListener(new OnMoreViewClickListener());
+        setFooterDividersEnabled(false);
         setOnScrollListener(new ListViewOnScrollListener());
         a.recycle();
     }
@@ -259,6 +261,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
     }
 
     public void loadMore(){
+
         if(!mLoadMoreLock && mHasLoadMore) {
             showLoadMoreView();
             if (mOnLoadMoreListener != null) {
@@ -266,6 +269,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
             }
             mLoadMoreLock = true;//上锁
             showLoadingUI();
+            setSelection(ListView.FOCUS_DOWN);//刷新到底部
         }
     }
     private void hideLoadMoreView() {
@@ -285,12 +289,18 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
 
         public void onScrollStateChanged(AbsListView listView, int scrollState) {
             if (scrollState == OnScrollListener.SCROLL_STATE_IDLE
-                    && listView.getLastVisiblePosition() + 1 == listView.getCount()) {// 如果滚动到最后一行
+                    && listView.getLastVisiblePosition() + 1 == listView.getCount()
+                    ) {// 如果滚动到最后一行
                 onScrollBottom();
             }
         }
 
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            if(totalItemCount > visibleItemCount){//有第二页
+                isLastData=true;
+            }else{
+                isLastData=false;
+            }
         }
     }
 
