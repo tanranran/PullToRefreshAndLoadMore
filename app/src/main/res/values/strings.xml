@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PullToRefreshAndLoadMore</string>
+    <string name="listView">listView</string>
 </resources>

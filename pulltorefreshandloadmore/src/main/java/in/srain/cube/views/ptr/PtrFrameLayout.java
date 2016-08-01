@@ -631,7 +631,7 @@ public class PtrFrameLayout extends ViewGroup {
             mRefreshCompleteHook.reset();
         }
 
-        int delay = (int) (mLoadingMinTime - (System.currentTimeMillis() - mLoadingStartTime));
+        long delay = (mLoadingMinTime - (System.currentTimeMillis() - mLoadingStartTime));
         if (delay <= 0) {
             if (DEBUG) {
                 PtrCLog.d(LOG_TAG, "performRefreshComplete at once");

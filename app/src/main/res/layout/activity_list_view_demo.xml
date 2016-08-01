@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<in.srain.cube.views.ptr.PtrClassicFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/store_house_ptr_frame"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    cube_ptr:ptr_resistance="1.7"
+    cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+    cube_ptr:ptr_duration_to_close="300"
+    cube_ptr:ptr_duration_to_close_header="2000"
+    cube_ptr:ptr_keep_header_when_refresh="true"
+    cube_ptr:ptr_pull_to_fresh="false">
+    <com.tan.pulltorefreshandloadmore.ui.ListViewLoadMore
+        android:id="@+id/lv_load_more"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+<!--
+ptr_resistance 阻尼系数  默认: 1.7f，越大，感觉下拉时越吃力。
+
+ptr_ratio_of_header_height_to_refresh 触发刷新时移动的位置比例 默认，1.2f，移动达到头部高度1.2倍时可触发刷新操作。
+
+ptr_duration_to_close 回弹延时 默认 200ms，回弹到刷新高度所用时间
+
+ptr_duration_to_close_header 头部回弹时间 默认1000ms
+
+ptr_keep_header_when_refresh 刷新是保持头部 默认值 true.
+
+ptr_pull_to_fresh 下拉刷新 / 释放刷新 默认为释放刷新
+-->
