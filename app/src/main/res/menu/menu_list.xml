@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_show_no_more"
+        android:orderInCategory="1"
+        android:checked="true"
+        android:checkable="true"
+        android:title="@string/showNoMore"/>
+    <item
+        android:id="@+id/menu_click_scroll"
+        android:orderInCategory="2"
+        android:checked="false"
+        android:checkable="true"
+        android:title="@string/switchClickScroll"/>
+
+</menu>

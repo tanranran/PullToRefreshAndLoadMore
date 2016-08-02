@@ -233,8 +233,11 @@ public class GridViewLoadMore extends GridViewSupport implements OnScrollBottomL
      * 完成加载更多
      */
     public void onLoadMoreComplete() {
-        setHasLoadMore(false);
-        hideLoadMoreView();
+        if (mHasLoadFail) {
+            showFailUI();
+        } else if (mHasLoadMore) {
+            showNormalUI();
+        }
     }
 
     /**

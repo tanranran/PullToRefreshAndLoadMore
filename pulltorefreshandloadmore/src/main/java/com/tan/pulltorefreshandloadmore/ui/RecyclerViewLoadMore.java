@@ -249,12 +249,11 @@ public class RecyclerViewLoadMore extends RecyclerView implements OnScrollBottom
      * 完成加载更多
      */
     public void onLoadMoreComplete() {
-//        if (mHasLoadFail) {
-//            showFailUI();
-//        } else if (mHasLoadMore) {
-//            showNormalUI();
-//        }
-        setHasLoadMore(false);
+        if (mHasLoadFail) {
+            showFailUI();
+        } else if (mHasLoadMore) {
+            showNormalUI();
+        }
     }
 
     /**

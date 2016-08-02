@@ -3,20 +3,18 @@ package com.tan.pulltorefreshandloadmore.sample;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.tan.pulltorefreshandloadmore.sample.adapter.ListDataAdapter;
+import com.tan.pulltorefreshandloadmore.sample.base.BaseActivity;
 import com.tan.pulltorefreshandloadmore.sample.ui.ListViewDemoActivity;
-
-import org.byteam.superadapter.SuperAdapter;
-import org.byteam.superadapter.internal.SuperViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Context  context;
     private ListView lv_load_more;
@@ -55,16 +53,6 @@ public class MainActivity extends AppCompatActivity {
         listData.add("ScrollView");
         listDataAdapter.addAll(listData);
     }
-
-    public class ListDataAdapter extends SuperAdapter<String> {
-        public ListDataAdapter(Context context, List<String> list, int layoutResId) {
-            super(context, list, layoutResId);
-        }
-        public void onBind(SuperViewHolder holder, int viewType, int position, String item) {
-            holder.setText(android.R.id.text1, item);
-        }
-    }
-
     public void onBackPressed() {
         System.exit(0);
     }

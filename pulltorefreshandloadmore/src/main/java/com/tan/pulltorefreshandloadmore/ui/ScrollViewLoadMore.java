@@ -224,8 +224,11 @@ public class ScrollViewLoadMore extends ScrollView implements OnScrollBottomList
      * 完成加载更多
      */
     public void onLoadMoreComplete() {
-        setHasLoadMore(false);
-        removeFooterView(mLoadMoreView.getFooterView());
+        if (mHasLoadFail) {
+            showFailUI();
+        } else if (mHasLoadMore) {
+            showNormalUI();
+        }
     }
 
     /**

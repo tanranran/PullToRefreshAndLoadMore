@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
@@ -73,7 +74,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
     private boolean mHasLoadMoreViewShowState;
 
     private View parentView;
-    private boolean isLastData;//数据是否超过屏幕 超过显示更多数据,不超过则不显示
+    private boolean LastData,isLastData;//数据是否超过屏幕 超过显示更多数据,不超过则不显示
     public ListViewLoadMore(Context context) {
         super(context);
         init(context, null);
@@ -238,9 +239,12 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
      * 完成加载更多
      */
     public void onLoadMoreComplete() {
-        setHasLoadMore(false);
+        if (mHasLoadFail) {
+            showFailUI();
+        } else if (mHasLoadMore) {
+            showNormalUI();
+        }
     }
-
     /**
      * 点击more view加载更多
      */
@@ -275,6 +279,7 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
     private void hideLoadMoreView() {
         mHasLoadMoreViewShowState = false;
         mLoadMoreView.hideView();
+        Log.d("测试数据","测试数据");
     }
 
     private void showLoadMoreView(){
@@ -288,9 +293,8 @@ public class ListViewLoadMore extends ListView implements OnScrollBottomListener
     private class ListViewOnScrollListener implements OnScrollListener{
 
         public void onScrollStateChanged(AbsListView listView, int scrollState) {
-            if (scrollState == OnScrollListener.SCROLL_STATE_IDLE
-                    && listView.getLastVisiblePosition() + 1 == listView.getCount()
-                    ) {// 如果滚动到最后一行
+            if (scrollState == OnScrollListener.SCROLL_STATE_IDLE&& listView.getLastVisiblePosition() + 1 == listView.getCount()) {// 如果滚动到最后一行
+
                 onScrollBottom();
             }
         }
