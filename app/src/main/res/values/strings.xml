@@ -2,6 +2,10 @@
     <string name="app_name">PullToRefreshAndLoadMore</string>
     <string name="listView">listViewDemo</string>
     <string name="recyclerView">recyclerViewDemo</string>
+    <string name="gridView">gridViewDemo</string>
+    <string name="expandableView">expandableView</string>
+    <string name="scrollview">scrollview</string>
+
     <string name="showNoMore">是否显示没有更多</string>
     <string name="switchClickScroll">点击(滚动)加载更多</string>
 </resources>

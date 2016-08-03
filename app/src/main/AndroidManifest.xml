@@ -21,6 +21,16 @@
         <activity
             android:label="@string/recyclerView"
             android:name=".ui.RecyclerViewDemoActivity"/>
+        <activity
+            android:label="@string/gridView"
+            android:name=".ui.GridViewDemoActivity"/>
+        <activity
+            android:label="@string/gridView"
+            android:name=".ui.ExpandableListDemoActivity"/>
+        <activity
+            android:label="@string/scrollview"
+            android:name=".ui.ScrollViewDemoActivity"/>
+
     </application>
 
 </manifest>

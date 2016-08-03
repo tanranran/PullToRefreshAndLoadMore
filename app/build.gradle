@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'//https://github.com/yqritc/RecyclerView-FlexibleDivider
-    compile 'jp.wasabeef:recyclerview-animators:2.2.3'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.3'//https://github.com/wasabeef/recyclerview-animators
     compile 'org.byteam.superadapter:superadapter:3.6'//https://github.com/byteam/SuperAdapter
     compile 'com.github.frankiesardo:linearlistview:1.0.1@aar'//https://github.com/frankiesardo/LinearListView
     compile project(':pulltorefreshandloadmore')

@@ -4,8 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.tan.pulltorefreshandloadmore.adapter.HeaderAndFooterRecyclerViewAdapter;
@@ -43,6 +43,7 @@ public class RecyclerViewDemoActivity extends BaseActivity {
         initData();
     }
     public void initView(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ptrClassicFrameLayout=getView(R.id.ptr_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);
         ptrClassicFrameLayout.setOnRefreshListener(new OnDefaultRefreshListener() {
@@ -67,12 +68,10 @@ public class RecyclerViewDemoActivity extends BaseActivity {
         listViewLoadMore.addHeaderView(textView);
         listViewLoadMore.setOnItemClickListener(new HeaderAndFooterRecyclerViewAdapter.OnItemClickListener() {
             public void onItemClick(RecyclerView.ViewHolder holder, int position) {
-                Log.d("测试数据","测试数据"+position);
             }
         });
         listViewLoadMore.setOnItemLongClickListener(new HeaderAndFooterRecyclerViewAdapter.OnItemLongClickListener() {
             public boolean onItemLongCLick(RecyclerView.ViewHolder holder, int position) {
-                Log.d("测试数据","测试数据"+position);
                 return false;
             }
         });
@@ -89,7 +88,7 @@ public class RecyclerViewDemoActivity extends BaseActivity {
                         .build());
     }
     public void initData(){
-        listDataAdapter=new ListDataAdapter(this,listData,android.R.layout.simple_list_item_1);
+        listDataAdapter=new ListDataAdapter(this,listData,R.layout.list_item_demo);
         listDataAdapter.openLoadAnimation();
         listDataAdapter.setOnlyOnce(false);
         listViewLoadMore.setAdapter(listDataAdapter);
@@ -114,5 +113,13 @@ public class RecyclerViewDemoActivity extends BaseActivity {
                 }, 1000);
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

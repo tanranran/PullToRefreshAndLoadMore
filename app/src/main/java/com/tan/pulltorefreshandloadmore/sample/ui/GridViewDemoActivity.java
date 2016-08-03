@@ -1,15 +1,18 @@
 package com.tan.pulltorefreshandloadmore.sample.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.tan.pulltorefreshandloadmore.impl.OnLoadMoreListener;
-import com.tan.pulltorefreshandloadmore.mode.LoadMoreMode;
 import com.tan.pulltorefreshandloadmore.sample.R;
 import com.tan.pulltorefreshandloadmore.sample.adapter.ListDataAdapter;
 import com.tan.pulltorefreshandloadmore.sample.base.BaseActivity;
-import com.tan.pulltorefreshandloadmore.ui.ListViewLoadMore;
+import com.tan.pulltorefreshandloadmore.ui.GridViewLoadMore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +23,18 @@ import in.srain.cube.views.ptr.customize.OnDefaultRefreshListener;
 
 /**
  * User: Tanranran(tanjuran@gmail.com)
- * Date: 2016-08-01
- * Time: 15:46
+ * Date: 2016-08-03
+ * Time: 11:26
  */
-public class ListViewDemoActivity extends BaseActivity {
-
+public class GridViewDemoActivity extends BaseActivity {
     private PtrClassicFrameLayout ptrClassicFrameLayout;
     private ListDataAdapter listDataAdapter;
-    private ListViewLoadMore listViewLoadMore;
+    private GridViewLoadMore listViewLoadMore;
     private int headAdd=0,foodAdd=0;
     private List listData=new ArrayList();
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view_demo);
+        setContentView(R.layout.activity_grid_view_demo);
         initView();
         initData();
     }
@@ -45,18 +47,29 @@ public class ListViewDemoActivity extends BaseActivity {
                 frame.postDelayed(new Runnable() {
                     public void run() {
                         headAdd++;
-                        listDataAdapter.add(0,"下拉刷新加载的数据"+headAdd);
+                        listDataAdapter.add(0,"下拉数据"+headAdd);
                         frame.refreshComplete();
                     }
                 }, 500);
             }
         });
         listViewLoadMore=getView(R.id.lv_load_more);
+
+        TextView textView=new TextView(context);
+        textView.setText("我是HeaderView");
+        textView.setPadding(100,100,100,100);
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundColor(Color.RED);
+        textView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.WRAP_CONTENT));
+        listViewLoadMore.addHeaderView(textView);
+
     }
     public void initData(){
         listDataAdapter=new ListDataAdapter(this,listData,R.layout.list_item_demo);
+        listDataAdapter.openLoadAnimation();
+        listDataAdapter.setOnlyOnce(false);
         listViewLoadMore.setAdapter(listDataAdapter);
-        for (int i=0;i<20;i++){
+        for (int i=0;i<50;i++){
             listData.add("测试数据"+i);
         }
         listViewLoadMore.setHasLoadMore(true);
@@ -65,52 +78,29 @@ public class ListViewDemoActivity extends BaseActivity {
             public void loadMore() {
                 listViewLoadMore.postDelayed(new Runnable() {
                     public void run() {
-                        if(foodAdd<3){
-                            foodAdd++;
-                            listDataAdapter.add("上拉加载的数据"+foodAdd);
+                        if(foodAdd<30){
+                            listDataAdapter.add("上拉数据"+foodAdd++);
+                            listDataAdapter.add("上拉数据"+foodAdd++);
+                            listDataAdapter.add("上拉数据"+foodAdd++);
+                            listDataAdapter.add("上拉数据"+foodAdd++);
+                            listDataAdapter.add("上拉数据"+foodAdd++);
+                            listDataAdapter.add("上拉数据"+foodAdd++);
                             listViewLoadMore.setHasLoadMore(true);
                         }else{
                             listViewLoadMore.setHasLoadMore(false);
                         }
                         listViewLoadMore.onLoadMoreComplete();
                     }
-                }, 100);
+                }, 1000);
             }
         });
     }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list, menu);
-        return true;
-    }
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.menu_show_no_more:
-                if (item.isChecked()){
-                    item.setChecked(false);
-                    listViewLoadMore.setNoLoadMoreHideView(true);
-                }else{
-                    item.setChecked(true);
-                    listViewLoadMore.setNoLoadMoreHideView(false);
-                }
-                break;
-            case R.id.menu_click_scroll:
-                if (item.isChecked()){
-                    item.setChecked(false);
-                    listViewLoadMore.setLoadMoreMode(LoadMoreMode.SCROLL);
-                }else{
-                    item.setChecked(true);
-                    listViewLoadMore.setLoadMoreMode(LoadMoreMode.CLICK);
-                }
-                break;
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
-            default:
-                break;
-
         }
-        foodAdd=0;
-        initData();
         return super.onOptionsItemSelected(item);
     }
 }

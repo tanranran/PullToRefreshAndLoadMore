@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<in.srain.cube.views.ptr.PtrClassicFrameLayout
+    android:id="@+id/ptr_frame"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:ptr_duration_to_close="300"
+    app:ptr_duration_to_close_header="2000"
+    app:ptr_keep_header_when_refresh="true"
+    app:ptr_pull_to_fresh="false"
+    app:ptr_ratio_of_header_height_to_refresh="1.2"
+    app:ptr_resistance="1.7">
+
+    <com.tan.pulltorefreshandloadmore.ui.GridViewLoadMore
+        android:id="@+id/lv_load_more"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="80dp"
+        android:padding="10dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="?android:attr/selectableItemBackground"
+        android:background="@android:color/white"/>
+
+</in.srain.cube.views.ptr.PtrClassicFrameLayout>

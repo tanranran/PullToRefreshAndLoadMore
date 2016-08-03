@@ -11,8 +11,11 @@ import android.widget.Toast;
 
 import com.tan.pulltorefreshandloadmore.sample.adapter.ListDataAdapter;
 import com.tan.pulltorefreshandloadmore.sample.base.BaseActivity;
+import com.tan.pulltorefreshandloadmore.sample.ui.ExpandableListDemoActivity;
+import com.tan.pulltorefreshandloadmore.sample.ui.GridViewDemoActivity;
 import com.tan.pulltorefreshandloadmore.sample.ui.ListViewDemoActivity;
 import com.tan.pulltorefreshandloadmore.sample.ui.RecyclerViewDemoActivity;
+import com.tan.pulltorefreshandloadmore.sample.ui.ScrollViewDemoActivity;
 import com.tan.pulltorefreshandloadmore.ui.SwipeRefreshLayoutReFresh;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
     public void initView(){
         lv_load_more= getView(R.id.lv_load_more);
-        listDataAdapter=new ListDataAdapter(this,listData,android.R.layout.simple_list_item_1);
+        listDataAdapter=new ListDataAdapter(this,listData,R.layout.list_item_demo);
         listDataAdapter.openLoadAnimation();
         lv_load_more.setAdapter(listDataAdapter);
         lv_load_more.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -47,6 +50,16 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 1:
                         startActivity(new Intent(context, RecyclerViewDemoActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(context, GridViewDemoActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(context, ExpandableListDemoActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(context, ScrollViewDemoActivity.class));
+
                         break;
                 }
             }

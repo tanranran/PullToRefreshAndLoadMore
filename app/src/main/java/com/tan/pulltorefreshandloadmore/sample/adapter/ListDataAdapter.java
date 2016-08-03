@@ -23,6 +23,5 @@ public class ListDataAdapter extends SuperAdapter<String> {
     }
     public void onBind(SuperViewHolder holder, int viewType, int position, String item) {
         holder.setText(android.R.id.text1, item);
-        holder.itemView.setBackgroundResource(resourceId);
     }
 }
