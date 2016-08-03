@@ -2,6 +2,7 @@ package com.tan.pulltorefreshandloadmore.sample.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.MenuItem;
 
 import com.linearlistview.LinearListView;
 import com.tan.pulltorefreshandloadmore.impl.OnLoadMoreListener;
@@ -79,5 +80,13 @@ public class ScrollViewDemoActivity extends BaseActivity {
                 }, 100);
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

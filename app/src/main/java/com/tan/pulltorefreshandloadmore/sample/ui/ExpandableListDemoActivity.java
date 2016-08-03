@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
@@ -140,5 +141,13 @@ public class ExpandableListDemoActivity extends BaseActivity{
 
             }
         }.execute();
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
