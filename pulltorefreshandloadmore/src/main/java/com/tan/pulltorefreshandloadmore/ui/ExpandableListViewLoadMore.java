@@ -9,8 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListAdapter;
 
 import com.tan.pulltorefreshandloadmore.R;
 import com.tan.pulltorefreshandloadmore.impl.ILoadMoreView;
@@ -120,7 +120,7 @@ public class ExpandableListViewLoadMore extends ExpandableListView implements On
         a.recycle();
     }
 
-    public void setAdapter(ListAdapter adapter) {
+    public void setAdapter(ExpandableListAdapter adapter) {
         if (!mAddLoadMoreFooterFlag) {
             mAddLoadMoreFooterFlag = true;
             addFooterView(mLoadMoreView.getFooterView());

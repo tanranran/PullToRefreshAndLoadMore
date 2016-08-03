@@ -50,11 +50,7 @@ public class ExpandableListDemoActivity extends BaseActivity{
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);
         ptrClassicFrameLayout.setOnRefreshListener(new OnDefaultRefreshListener() {
             public void onRefreshBegin(final PtrFrameLayout frame) {
-                frame.postDelayed(new Runnable() {
-                    public void run() {
-                        requestData(true);
-                    }
-                }, 500);
+                requestData(true);
             }
         });
         expandableListViewLoadMore=getView(R.id.lv_load_more);
@@ -80,7 +76,6 @@ public class ExpandableListDemoActivity extends BaseActivity{
                 android.R.layout.simple_expandable_list_item_2, new String[]{KEY}, new int[]{android.R.id.text1});
 
         expandableListViewLoadMore.setAdapter(mExpandableListViewAdapter);
-        expandableListViewLoadMore.setHasLoadMore(true);
         ptrClassicFrameLayout.autoRefresh();
     }
     private void requestData(final boolean refresh) {
@@ -90,7 +85,7 @@ public class ExpandableListDemoActivity extends BaseActivity{
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -141,7 +136,6 @@ public class ExpandableListDemoActivity extends BaseActivity{
                 } else {
                     expandableListViewLoadMore.onLoadMoreComplete();
                 }
-
                 mExpandableListViewAdapter.notifyDataSetChanged();
 
             }
