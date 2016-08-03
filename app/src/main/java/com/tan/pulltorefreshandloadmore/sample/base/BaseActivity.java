@@ -13,7 +13,7 @@ import android.view.View;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    private Context context;
+    public Context context;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.context=this;

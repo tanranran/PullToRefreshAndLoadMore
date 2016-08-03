@@ -18,6 +18,9 @@
         <activity
             android:label="@string/listView"
             android:name=".ui.ListViewDemoActivity"/>
+        <activity
+            android:label="@string/recyclerView"
+            android:name=".ui.RecyclerViewDemoActivity"/>
     </application>
 
 </manifest>

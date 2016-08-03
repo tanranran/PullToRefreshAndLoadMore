@@ -8,4 +8,8 @@
         <attr name="loadMoreView" format="string"/>
         <attr name="noLoadMoreHideView" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="SwipeRefreshLayoutRefresh">
+        <attr name="refreshLoadingColor" format="color"/>
+    </declare-styleable>
 </resources>

@@ -2,9 +2,8 @@ package com.tan.pulltorefreshandloadmore.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,7 +16,7 @@ import com.tan.pulltorefreshandloadmore.util.SizeUtil;
  * Date: 2016-06-21
  * Time: 11:45
  */
-public class DefaultLoadMoreView extends LinearLayout implements ILoadMoreView {
+public class DefaultLoadMoreView extends FrameLayout implements ILoadMoreView {
 
     private TextView mTvMessage;
     private ProgressBar mPbLoading;
@@ -39,14 +38,12 @@ public class DefaultLoadMoreView extends LinearLayout implements ILoadMoreView {
     }
 
     private void init(Context context) {
-        this.setGravity(Gravity.CENTER);
         this.padding= SizeUtil.dip2px(context,10);
         this.setPadding(padding,padding,padding,padding);
         this.inflate(context, R.layout.load_more_default, this);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_load_more);
         mTvMessage = (TextView) findViewById(R.id.tv_load_more_msg);
         mTvMessage.setText(getResources().getText(R.string.loading_view_loading));
-
     }
 
     public void showNormal() {

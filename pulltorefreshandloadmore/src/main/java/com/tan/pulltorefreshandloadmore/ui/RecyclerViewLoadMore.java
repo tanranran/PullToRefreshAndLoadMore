@@ -113,18 +113,22 @@ public class RecyclerViewLoadMore extends RecyclerView implements OnScrollBottom
         } else {
             mLoadMoreView = new DefaultLoadMoreView(context);
         }
-        mLoadMoreView = new DefaultLoadMoreView(context);
         mLoadMoreView.getFooterView().setOnClickListener(new OnMoreViewClickListener());
+        mLoadMoreView.getFooterView().setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.WRAP_CONTENT));
         setHasLoadMore(false);
         a.recycle();
         addOnScrollListener(new RecyclerViewOnScrollListener());
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        setLayoutManager(layoutManager);
+        setHasFixedSize(true);
     }
 
     public void setAdapter(RecyclerView.Adapter adapter) {
         try {
             adapter.unregisterAdapterDataObserver(mDataObserver);
         } catch (Exception e){
-            e.printStackTrace();
         }
         adapter.registerAdapterDataObserver(mDataObserver);
         mHeaderAndFooterRecyclerViewAdapter.setAdapter(adapter);
@@ -272,10 +276,18 @@ public class RecyclerViewLoadMore extends RecyclerView implements OnScrollBottom
         mHeaderAndFooterRecyclerViewAdapter.addHeaderView(headerView);
     }
 
+    /**
+     * 删除footer view
+     * @param footerView
+     */
     public void removeFooterView(View footerView) {
         mHeaderAndFooterRecyclerViewAdapter.removeFooter(footerView);
     }
 
+    /**
+     * header view
+     * @param headerView
+     */
     public void removeHeaderView(View headerView) {
         mHeaderAndFooterRecyclerViewAdapter.removeHeader(headerView);
     }
@@ -380,7 +392,7 @@ public class RecyclerViewLoadMore extends RecyclerView implements OnScrollBottom
          * 取数组中最大值
          *
          * @param lastPositions
-         * @return
+         * @return max
          */
         private int findMax(int[] lastPositions) {
             int max = lastPositions[0];
